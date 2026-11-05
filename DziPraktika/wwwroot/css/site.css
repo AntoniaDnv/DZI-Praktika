@@ -1,0 +1,28 @@
+:root {
+  --bg: #F5F6FA;
+  --card: #FFFFFF;
+  --text: #182238;
+  --muted: #667085;
+  --accent: #6D28D9;
+  --border: #D0D5DD;
+  --ok: #15803D;
+  --err: #B91C1C;
+
+  --font: "Segoe UI", sans-serif;
+
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+
+  --radius-card: 12px;
+  --radius-ctl: 8px;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 16px;
+}
