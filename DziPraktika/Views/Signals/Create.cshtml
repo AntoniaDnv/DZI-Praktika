@@ -1,0 +1,53 @@
+@model DziPraktika.ViewModels.SignalFormViewModel
+@using DziPraktika.Controllers
+@using DziPraktika.Models
+@using DziPraktika.ViewModels
+@{
+    ViewData["Title"] = "Подай сигнал";
+    var success = TempData[SignalsController.SuccessKey] as string;
+    var error = ViewData[SignalsController.ErrorKey] as string;
+}
+
+<div class="signal-card">
+    <h1>Подай сигнал</h1>
+    <p class="signal-muted">Открил си проблем или имаш предложение? Пиши ни.</p>
+
+    @if (success is not null)
+    {
+        <div class="signal-alert signal-alert-ok" role="status">@success</div>
+    }
+    @if (error is not null)
+    {
+        <div class="signal-alert signal-alert-err" role="alert">@error</div>
+    }
+
+    <form asp-action="Create" method="post" id="signal-form">
+        <fieldset class="signal-field">
+            <legend>Вид</legend>
+            <label class="signal-radio">
+                <input type="radio" asp-for="Type" value="@SignalType.Problem" /> Проблем
+            </label>
+            <label class="signal-radio">
+                <input type="radio" asp-for="Type" value="@SignalType.Suggestion" /> Предложение
+            </label>
+            <div><span asp-validation-for="Type" class="signal-error"></span></div>
+        </fieldset>
+
+        <div class="signal-field">
+            <label asp-for="Content"></label>
+            <textarea asp-for="Content" rows="6" maxlength="@SignalFormViewModel.MaxLength"
+                      placeholder="Опиши проблема или предложението (поне @SignalFormViewModel.MinLength символа)"></textarea>
+            <div class="signal-row">
+                <span asp-validation-for="Content" class="signal-error"></span>
+                <span id="signal-counter" class="signal-muted" aria-live="polite">0 / @SignalFormViewModel.MaxLength</span>
+            </div>
+        </div>
+
+        <button type="submit" id="signal-submit" class="signal-btn">Изпрати</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/signal.js" asp-append-version="true"></script>
+}

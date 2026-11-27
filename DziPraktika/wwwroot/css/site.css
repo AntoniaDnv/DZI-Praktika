@@ -26,3 +26,21 @@ body {
   font-family: var(--font);
   font-size: 16px;
 }
+
+/* Signal form */
+.signal-card { max-width: 640px; margin: var(--space-4) auto; padding: var(--space-4); background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-card); }
+.signal-card h1 { font-size: 28px; margin: 0 0 var(--space-1); }
+.signal-muted { color: var(--muted); }
+.signal-field { margin: var(--space-3) 0 0; border: 0; padding: 0; }
+.signal-field legend, .signal-field > label { font-weight: 600; font-size: 16px; display: block; margin-bottom: var(--space-1); }
+.signal-radio { margin-right: var(--space-3); cursor: pointer; }
+.signal-field textarea { width: 100%; padding: var(--space-1) 12px; border: 1px solid var(--border); border-radius: var(--radius-ctl); font: inherit; resize: vertical; }
+.signal-field textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.signal-row { display: flex; justify-content: space-between; gap: var(--space-2); margin-top: 4px; }
+.signal-error, .field-validation-error { color: var(--err); font-size: 14px; }
+.signal-counter-bad { color: var(--err); }
+.signal-btn { margin-top: var(--space-3); padding: 12px var(--space-3); background: var(--accent); color: #fff; border: 0; border-radius: var(--radius-ctl); font: inherit; font-weight: 600; cursor: pointer; }
+.signal-btn:disabled { opacity: .6; cursor: not-allowed; }
+.signal-alert { margin-top: var(--space-2); padding: 12px var(--space-2); border-radius: var(--radius-ctl); }
+.signal-alert-ok { background: #ECFDF3; color: var(--ok); border: 1px solid #ABEFC6; }
+.signal-alert-err { background: #FEF3F2; color: var(--err); border: 1px solid #FECDCA; }
