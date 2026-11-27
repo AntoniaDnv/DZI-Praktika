@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 using DziPraktika.Data;
 using DziPraktika.Services;
 
@@ -13,7 +14,12 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddControllersWithViews();
+builder.Services.AddMvc(options =>
+{
+    options.ModelBindingMessageProvider.SetValueIsInvalidAccessor(fieldName => $"Стойността '{fieldName}' е невалидна.");
+    options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(fieldName => $"Полето '{fieldName}' е задължително.");
+    options.ModelBindingMessageProvider.SetValueMustBeANumberAccessor(fieldName => $"Полето '{fieldName}' трябва да е число.");
+});
 builder.Services.AddAppServices(builder.Configuration);
 
 var app = builder.Build();
