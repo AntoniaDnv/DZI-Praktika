@@ -15,8 +15,15 @@
     textarea.addEventListener("input", updateCounter);
     updateCounter();
 
+    const buttonText = button.textContent;
+    // Back след успешно изпращане връща страницата от bfcache със заключен бутон — отключи го.
+    window.addEventListener("pageshow", function (e) {
+        if (e.persisted) { button.disabled = false; button.textContent = buttonText; }
+    });
+
     form.addEventListener("submit", function (e) {
         if (button.disabled) { e.preventDefault(); return; } // втори клик
+        textarea.value = textarea.value.trim(); // същото, което брояча и сървърът мерят
         // jQuery unobtrusive validation спира невалидна форма; бутонът се заключва само при валидна.
         const valid = window.jQuery && jQuery.fn.valid ? jQuery(form).valid() : form.checkValidity();
         if (!valid) return;
